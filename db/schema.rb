@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_24_120333) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_25_060537) do
   create_table "admins", force: :cascade do |t|
     t.string "username"
     t.string "password"
@@ -62,21 +62,28 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_24_120333) do
     t.index ["order_id"], name: "index_payments_on_order_id"
   end
 
+  create_table "product_sizes", force: :cascade do |t|
+    t.integer "product_id", null: false
+    t.integer "size_id", null: false
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_product_sizes_on_product_id"
+    t.index ["size_id"], name: "index_product_sizes_on_size_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.integer "size_id", null: false
     t.integer "category_id", null: false
     t.decimal "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_products_on_category_id"
-    t.index ["size_id"], name: "index_products_on_size_id"
   end
 
   create_table "sizes", force: :cascade do |t|
     t.integer "size", default: 0
-    t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -86,6 +93,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_24_120333) do
   add_foreign_key "orders", "payments"
   add_foreign_key "orders", "users"
   add_foreign_key "payments", "orders"
+  add_foreign_key "product_sizes", "products"
+  add_foreign_key "product_sizes", "sizes"
   add_foreign_key "products", "categories"
-  add_foreign_key "products", "sizes"
 end
