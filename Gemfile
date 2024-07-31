@@ -65,3 +65,13 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "devise", "~> 4.9"
+
+gem 'cssbundling-rails'
+
+gem 'devise-bootstrap-views', '~> 1.0'
+
+gem 'activeadmin'
+
+gem 'sassc'
