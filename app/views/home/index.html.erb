@@ -1,1 +1,28 @@
-<h1>Welcome to home page</h1>
+<%= render 'navigation' %>
+
+<div class="d-flex">
+  <%= render 'sidebar' %>
+
+  <div class="main-content">
+    <div class="row">
+      <%= render 'layouts/messages' %>
+      <h1>Chen Tapak Dam Dam</h1>
+
+      <% @products.each do |product| %>
+        <div class="col-md-4 my-3 ">
+          <div class="card">
+            <% if product.image.attached? %>
+              <%= image_tag url_for(product.image), class: "card-img-top pt-5", alt: product.name, width: 200, height: 200 %>
+            <% end %>
+
+            <div class="card-body">
+              <h5 class="card-title"><%= product.name %> $<%= product.price %></h5>
+              <a href="/1" class="btn btn-primary">Add to Cart</a>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      
+    </div>
+  </div>
+</div>

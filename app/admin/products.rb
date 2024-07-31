@@ -1,5 +1,5 @@
 ActiveAdmin.register Product do
-  permit_params :name, :description, :category_id, :price, product_sizes_attributes: [:id, :size_id, :quantity, :_destroy]
+  permit_params :name, :description, :category_id, :price, :image, product_sizes_attributes: [:id, :size_id, :quantity, :_destroy]
 
   form do |f|
     f.inputs 'Product Details' do
@@ -7,6 +7,7 @@ ActiveAdmin.register Product do
       f.input :description
       f.input :category, as: :select, collection: Category.all.map { |c| [c.display_name, c.id] }
       f.input :price
+      f.input :image, as: :file
     end
 
     f.has_many :product_sizes, allow_destroy: true, new_record: true do |ps|
@@ -29,6 +30,9 @@ ActiveAdmin.register Product do
         product.category.display_name
       end
       row :price
+      row :image do |product|
+        image_tag url_for(product.image) if product.image.attached?
+      end
       row :created_at
       row :updated_at
     end
@@ -52,6 +56,9 @@ ActiveAdmin.register Product do
       product.category.display_name
     end
     column :price
+    column :image do |product|
+      product.image.attached? ? product.image.filename.to_s : 'No Image'
+    end
     actions
   end
 end

@@ -7,16 +7,72 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <style>
+      /* Ensure the body takes up the full height */
+      body {
+          display: flex;
+          min-height: 100vh;
+          flex-direction: column;
+          margin: 0;
+      }
+
+      /* Sticky header styling */
+      header {
+          z-index: 1000; /* Ensure the header is above other content */
+          background-color: #212529; /* Dark background color for the header */
+      }
+
+      /* Sidebar styling */
+      .sidebar {
+          display: flex;
+          flex-direction: column;
+          position: fixed;
+          top: 65px; /* Adjust this value to move the sidebar down from the top of the viewport */
+          bottom: 0;
+          width: 280px;
+          background-color: #212529; /* Match the sidebar color with the header */
+          color: white;
+          overflow-y: auto; /* Enable scrolling for the sidebar if content overflows */
+          height: calc(100vh - 65px); /* Adjust height to take full viewport height minus header height */
+          padding-top: 20px; /* Add padding to the top if needed */
+          z-index: 100; /* Ensure the sidebar is in front of the content */
+      }
+
+      /* Main content styling */
+      .main-content {
+          margin-left: 280px; /* Offset for the fixed sidebar */
+          padding: 20px;
+          flex: 1; /* Allows the content to grow and shrink as needed */
+      }
+
+      /* Sidebar links */
+      .nav-link {
+          color: #adb5bd;
+      }
+      .nav-link.active {
+          color: #ffffff;
+          background-color: #495057;
+      }
+      .nav-link:hover {
+          color: #ffffff;
+          background-color: #495057;
+      }
+      .sidebar-footer {
+          padding: 10px 30px;
+          background-color: #212529; /* Same background color as sidebar */
+          margin-top: auto;
+      }
+    </style>
   </head>
 
   <body>
-    <%= render 'layouts/navigation' %>
+    <% unless customer_signed_in? %>
+      <div class="container my-3">
+        <%= render 'layouts/messages' %>
+      </div>
+    <% end %>
 
-    <div class="container">
-      <%= render 'layouts/messages' %>
-      <%= yield %>
-    </div>
-
+    <%= yield %>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
 </html>

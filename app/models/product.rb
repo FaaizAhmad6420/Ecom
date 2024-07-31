@@ -7,6 +7,8 @@ class Product < ApplicationRecord
 
   accepts_nested_attributes_for :product_sizes, allow_destroy: true
 
+  has_one_attached :image
+  
   def self.ransackable_attributes(auth_object = nil)
     ["category_id", "created_at", "description", "id", "id_value", "name", "price", "updated_at"]
   end
