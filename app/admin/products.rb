@@ -13,9 +13,13 @@ ActiveAdmin.register Product do
       ps.input :size, as: :select, collection: Size.all.map { |s| [s.display_name, s.id] }
       ps.input :quantity
     end
-
     f.actions
   end
+
+  filter :name
+  filter :category, as: :select, collection: Category.all.map { |c| [c.display_name, c.id] }
+  filter :price
+  filter :created_at
 
   show do
     attributes_table do
@@ -37,7 +41,6 @@ ActiveAdmin.register Product do
         column :quantity
       end
     end
-
   end
 
   index do
@@ -51,9 +54,4 @@ ActiveAdmin.register Product do
     column :price
     actions
   end
-
-  filter :name
-  filter :category, as: :select, collection: Category.all.map { |c| [c.display_name, c.id] }
-  filter :price
-  filter :created_at
 end

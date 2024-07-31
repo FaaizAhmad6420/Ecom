@@ -247,11 +247,11 @@ ActiveAdmin.setup do |config|
   #
   # To change the default utility navigation to show a link to your website & a logout btn
   #
-    config.namespace :admin do |admin|
-      admin.build_menu do |menu|
-        menu.add label: "Products", url: "/admin/products"
-      end
-    end
+  #   config.namespace :admin do |admin|
+  #     admin.build_menu do |menu|
+  #       menu.add label: "Products", url: "/admin/products"
+  #     end
+  #   end
   #
   # If you wanted to add a static menu item to the default menu provided:
   #

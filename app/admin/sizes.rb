@@ -8,12 +8,12 @@ ActiveAdmin.register Size do
     f.actions
   end
 
+  filter :size
+
   index do
     selectable_column
     id_column
     column :size
     actions
   end
-
-  filter :size
 end

@@ -8,12 +8,12 @@ ActiveAdmin.register Category do
     f.actions
   end
 
+  filter :category
+
   index do
     selectable_column
     id_column
     column :category
     actions
   end
-
-  filter :category
 end
