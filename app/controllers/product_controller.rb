@@ -1,4 +1,4 @@
-class HomeController < ApplicationController
+class ProductController < ApplicationController
   before_action :authenticate_customer!
 
   def index
