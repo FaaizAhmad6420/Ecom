@@ -2,6 +2,8 @@ class ProductController < ApplicationController
   before_action :authenticate_customer!
 
   def index
-    @products = Product.all
+    @q = Product.ransack(params[:q])
+    @products = @q.result(distinct: true)
+    @categories = Category.all
   end
 end
