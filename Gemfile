@@ -77,3 +77,5 @@ gem 'activeadmin'
 gem 'sassc'
 
 gem 'ransack'
+
+gem 'pagy'
