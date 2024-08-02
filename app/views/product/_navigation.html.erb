@@ -1,10 +1,10 @@
 <nav class="navbar bg-dark sticky-top" data-bs-theme="dark">
   <div class="container-fluid">
-    <a class="navbar-brand text-light"><h3>Ecom</h3></a>
+    <a class="navbar-brand text-light" href="<%= root_path %>"><h3>Ecom</h3></a>
 
     <div class="d-flex ms-auto align-items-center">
       <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" style="width: 850px;">
+        <input class="form-control me-2" type="search" name="q[name_cont]" placeholder="Search" aria-label="Search" style="width: 850px;">
         <%# <button class="btn btn-outline-success" type="submit">Search</button> %>
       </form>
 
