@@ -56,6 +56,7 @@
         <li class="nav-item">
           <a href="<%= root_path %>" class="nav-link text-white" aria-current="page">All</a>
         </li>
+
         <% @categories.each do |category| %>
           <li class="nav-item">
             <%= link_to category.category.capitalize() , root_path(q: { category_id_eq: category.id }), class: "nav-link text-white" %>
