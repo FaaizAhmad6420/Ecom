@@ -56,6 +56,7 @@
               <% if resource.avatar.attached? %>
                 <%= image_tag resource.avatar, class: 'img-thumbnail mb-3' %>
               <% end %>
+              
               <%= f.label :avatar %>
               <%= f.file_field :avatar, class: 'form-control' %>
             </div>
