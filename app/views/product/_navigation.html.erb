@@ -13,13 +13,12 @@
           <% if current_customer.avatar.attached? %>
             <%= image_tag url_for(current_customer.avatar), class: "rounded-circle me-2", alt: current_customer.email, width: 32, height: 32 %>
           <% end %>
-          <%= current_customer.email %>
+          <%= current_customer.username.present? ? current_customer.username : current_customer.email %>
         </a>
 
         <ul class="dropdown-menu dropdown-menu-end">
-          <li><a class="dropdown-item" href="#">Change Password</a></li>
-          <li><a class="dropdown-item" href="#">Delete Account</a></li>
-          <li><%= button_to "Sign Out", destroy_customer_session_path, class: "btn", method: :delete %></li>
+          <li><a class="dropdown-item" href="<%= customers_path %>">Profile</a></li>
+          <li><%= button_to "Sign Out", destroy_customer_session_path, class: "dropdown-item", method: :delete %></li>
         </ul>
       </div>
     </div>
