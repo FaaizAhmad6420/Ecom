@@ -28,6 +28,11 @@
             </div>
 
             <div class="mb-3 form-group">
+              <%= f.label :username %>
+              <%= f.text_field :username, autofocus: true, autocomplete: 'username', class: 'form-control' %>
+            </div>
+
+            <div class="mb-3 form-group">
               <%= f.label :current_password %>
               <%= f.password_field :current_password, autocomplete: 'current-password', class: 'form-control' %>
               <small class="form-text text-muted"><%= t('.we_need_your_current_password_to_confirm_your_changes') %></small>
@@ -45,6 +50,15 @@
             <div class="mb-3 form-group">
               <%= f.label :password_confirmation %>
               <%= f.password_field :password_confirmation, autocomplete: 'current-password', class: 'form-control' %>
+            </div>
+
+            <div class="mb-3 form-group">
+              <% if resource.avatar.attached? %>
+                <%= image_tag resource.avatar, class: 'img-thumbnail mb-3' %>
+              <% end %>
+              
+              <%= f.label :avatar %>
+              <%= f.file_field :avatar, class: 'form-control' %>
             </div>
 
             <div class="d-grid form-group">

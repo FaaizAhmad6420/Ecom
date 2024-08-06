@@ -8,7 +8,6 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <style>
-      /* Ensure the body takes up the full height */
       body {
           display: flex;
           min-height: 100vh;
@@ -16,51 +15,88 @@
           margin: 0;
       }
 
-      /* Sticky header styling */
       header {
-          z-index: 1000; /* Ensure the header is above other content */
-          background-color: #212529; /* Dark background color for the header */
+          z-index: 1000;
+          background-color: #212529;
       }
 
-      /* Sidebar styling */
       .sidebar {
           display: flex;
           flex-direction: column;
           position: fixed;
-          top: 65px; /* Adjust this value to move the sidebar down from the top of the viewport */
+          top: 65px;
           bottom: 0;
           width: 280px;
-          background-color: #212529; /* Match the sidebar color with the header */
+          background-color: #212529;
           color: white;
-          overflow-y: auto; /* Enable scrolling for the sidebar if content overflows */
-          height: calc(100vh - 65px); /* Adjust height to take full viewport height minus header height */
-          padding-top: 20px; /* Add padding to the top if needed */
-          z-index: 100; /* Ensure the sidebar is in front of the content */
+          overflow-y: auto;
+          height: calc(100vh - 65px);
+          padding-top: 20px;
+          z-index: 100;
       }
 
-      /* Main content styling */
       .main-content {
-          margin-left: 280px; /* Offset for the fixed sidebar */
+          margin-left: 280px;
           padding: 20px;
-          flex: 1; /* Allows the content to grow and shrink as needed */
+          flex: 1;
       }
 
-      /* Sidebar links */
       .nav-link {
           color: #adb5bd;
       }
+
       .nav-link.active {
           color: #ffffff;
           background-color: #495057;
       }
+
       .nav-link:hover {
           color: #ffffff;
           background-color: #495057;
       }
+
       .sidebar-footer {
           padding: 10px 30px;
-          background-color: #212529; /* Same background color as sidebar */
+          background-color: #212529;
           margin-top: auto;
+      }
+
+      .profile-container {
+      display: flex;
+      align-items: center;
+      margin-top: 20px;
+      }
+
+      .profile-container .profile-image {
+        flex: 0 0 150px;
+        margin-right: 20px;
+      }
+
+      .profile-container .profile-image img {
+        width: 150px;
+        height: 150px;
+        border-radius: 0;
+        object-fit: cover;
+      }
+
+      .profile-container .profile-details {
+        flex: 1;
+      }
+
+      .profile-container .profile-details h2 {
+        margin-top: 0;
+      }
+
+      .card-footer {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        padding: 10px;
+      }
+
+      .card {
+        max-width: 400px;
+        margin: 0 auto;
       }
     </style>
   </head>
