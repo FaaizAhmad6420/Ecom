@@ -38,11 +38,22 @@
       <br>
       <br>
       <h5>Quantity:</h5>
-      <input type="number" id="quantity" name="quantity" value="1" min="1" class="form-control w-25" readonly>
-      <input type="hidden" id="selected-size" name="selected_size" value="">
+
+      <div class="row">
+        <div class="col-3">
+          <div class="input-group">
+            <button class="btn btn-secondary" id="decreaseQuantity" disabled>−</button>
+            <input type="text" id="quantity" name="quantity" value="1" min="1" class="form-control text-center" readonly>
+            <button class="btn btn-secondary" id="increaseQuantity" disabled>+</button>
+          </div>
+
+          <input type="hidden" id="selected-size" name="selected_size" value="">
+        </div>
+      </div>
+      
       <br>
       <%= link_to "Return", :back, class: 'btn btn-danger' %>
-      <a href="#" id="add-to-cart" class="btn btn-primary">Add to Cart</a>
+      <a href="#" id="add-to-cart" class="btn btn-primary disabled">Add to Cart</a>
     </div>
   </div>
 </div>
