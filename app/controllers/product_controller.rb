@@ -6,4 +6,9 @@ class ProductController < ApplicationController
     @pagy, @products = pagy(@q.result(distinct: true))
     @categories = Category.all
   end
+
+  def show
+    @product = Product.find(params[:id])
+    @sizes = Size.all
+  end
 end
