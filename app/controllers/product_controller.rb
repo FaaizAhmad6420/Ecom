@@ -30,7 +30,6 @@ class ProductController < ApplicationController
         cart_item.quantity = quantity
         cart_item.price = product.price
         cart_item.save
-
         redirect_to cart_path, notice: 'Product added to cart'
       end
     end
