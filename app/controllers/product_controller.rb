@@ -33,7 +33,7 @@ class ProductController < ApplicationController
         else
           cart_item.quantity = quantity
         end
-        
+
         cart_item.price = product.price
         cart_item.save
         redirect_to cart_path, notice: 'Product added to cart'
@@ -42,8 +42,7 @@ class ProductController < ApplicationController
   end
 
   private
-
-  def current_order
-    Order.find_or_create_by(customer: current_customer, status: 'cart')
-  end
+    def current_order
+      Order.find_or_create_by(customer: current_customer, status: 'cart')
+    end
 end

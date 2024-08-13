@@ -4,6 +4,7 @@ class Size < ApplicationRecord
   has_many :product_sizes
   has_many :products, through: :product_sizes
   has_many :carts
+  
   enum size: { small: 0, medium: 1, large: 2 }
 
   def display_name
