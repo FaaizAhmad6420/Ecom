@@ -46,14 +46,16 @@
             <input type="text" id="quantity" name="quantity" value="1" min="1" class="form-control text-center" readonly>
             <button class="btn btn-secondary" id="increaseQuantity" disabled>+</button>
           </div>
-
-          <input type="hidden" id="selected-size" name="selected_size" value="">
         </div>
       </div>
       
       <br>
-      <%= link_to "Return", :back, class: 'btn btn-danger' %>
-      <a href="#" id="add-to-cart" class="btn btn-primary disabled">Add to Cart</a>
+
+      <%= form_with url: add_to_cart_product_path(@product), method: :post, local: true, id: 'add-to-cart-form' do %>
+        <%= hidden_field_tag :size_id, '', id: 'form-size-id' %>
+        <%= hidden_field_tag :quantity, '1', id: 'form-quantity' %>
+        <%= submit_tag 'Add to Cart', class: 'btn btn-primary', id: 'add-to-cart', disabled: true %>
+      <% end %>
     </div>
   </div>
 </div>
