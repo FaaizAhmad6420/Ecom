@@ -21,10 +21,10 @@ class ProductController < ApplicationController
       size = Size.find(size_id)
       order = current_order
 
-      if product.product_sizes.exists?(size_id: size_id)
+      if @product.product_sizes.exists?(size_id: size_id)
         cart_item = Cart.find_or_initialize_by(
           order: order,
-          product: product,
+          product: @product,
           size_id: size_id
         )
 
@@ -34,7 +34,7 @@ class ProductController < ApplicationController
           cart_item.quantity = quantity
         end
 
-        cart_item.price = product.price
+        cart_item.price = @product.price
         cart_item.save
         redirect_to cart_path, notice: 'Product added to cart'
       end
@@ -42,10 +42,6 @@ class ProductController < ApplicationController
   end
 
   private
-    def current_order
-      Order.find_or_create_by(customer: current_customer, status: 'cart')
-    end
-
     def set_cart_items
       @cart_items = current_order.carts
     end

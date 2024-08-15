@@ -1,13 +1,9 @@
 class CustomersController < ApplicationController
   before_action :authenticate_customer!
-  before_action :set_current_order
+  before_action :set_cart_items
 
   private
-    def set_current_order
-      @current_order = current_customer.orders.find_by(status: 'cart') || current_customer.orders.create(status: 'cart')
-    end
-
-    def current_order
-      @current_order
+    def set_cart_items
+      @cart_items = current_order.carts
     end
 end

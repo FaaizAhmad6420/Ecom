@@ -5,15 +5,30 @@ Rails.application.routes.draw do
   devise_for :customers
   resources :customers, only: [:index]
   resources :product, only: [:show]
+
   resources :product do
     post 'add_to_cart', on: :member
   end
+
   resources :carts, only: [:show]
+
   resources :carts do
     member do
       delete :remove_from_cart
     end
   end
+
+  resources :orders, only: [:show] do
+    member do
+      post :checkout
+    end
+  end
+
+  resources :orders do
+    resources :payments, only: [:new, :create]
+  end
+  
+  get 'orders', to: 'orders#index', as: 'customer_orders'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

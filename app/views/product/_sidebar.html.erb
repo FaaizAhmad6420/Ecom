@@ -21,13 +21,13 @@
     </li>
 
     <li>
-      <a href="#" class="nav-link text-white">
+      <%= link_to customer_orders_path, class: "nav-link text-white" do %>
         <svg class="bi pe-none me-2" width="16" height="16" fill="currentColor">
           <path d="M0 0h16v16H0V0z" fill="none"></path>
           <path d="M4 5h8v1H4V5zm0 2h8v1H4V7zm0 2h8v1H4v-1z"></path>
         </svg>
         Orders
-      </a>
+      <% end %>
     </li>
 
     <li>
