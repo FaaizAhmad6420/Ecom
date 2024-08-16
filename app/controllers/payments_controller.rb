@@ -33,18 +33,8 @@ class PaymentsController < ApplicationController
     def decrement_product_quantities
       @order.carts.each do |cart|
         product_size = ProductSize.find_by(product_id: cart.product_id, size_id: cart.size_id)
-
-        if product_size
-          new_quantity = product_size.quantity - cart.quantity
-          
-          if new_quantity < 0
-            raise ActiveRecord::Rollback, "Not enough stock for product #{cart.product_id} size #{cart.size_id}"
-          else
-            product_size.update!(quantity: new_quantity)
-          end
-        else
-          raise ActiveRecord::Rollback, "ProductSize not found for product #{cart.product_id} size #{cart.size_id}"
-        end
+        new_quantity = product_size.quantity - cart.quantity
+        product_size.update!(quantity: new_quantity)
       end
     end
 
