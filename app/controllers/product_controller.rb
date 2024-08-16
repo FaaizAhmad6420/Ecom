@@ -1,5 +1,7 @@
 class ProductController < ApplicationController
   before_action :authenticate_customer!
+  before_action :set_cart_items, only: [:index, :show]
+  before_action :set_product, only: [:show, :add_to_cart]
 
   def index
     @q = Product.ransack(params[:q])
@@ -8,12 +10,10 @@ class ProductController < ApplicationController
   end
 
   def show
-    @product = Product.find(params[:id])
     @sizes = Size.all
   end
 
   def add_to_cart
-    product = Product.find(params[:id])
     size_id = params[:size_id]
     quantity = params[:quantity].to_i
 
@@ -21,10 +21,10 @@ class ProductController < ApplicationController
       size = Size.find(size_id)
       order = current_order
 
-      if product.product_sizes.exists?(size_id: size_id)
+      if @product.product_sizes.exists?(size_id: size_id)
         cart_item = Cart.find_or_initialize_by(
           order: order,
-          product: product,
+          product: @product,
           size_id: size_id
         )
 
@@ -34,7 +34,7 @@ class ProductController < ApplicationController
           cart_item.quantity = quantity
         end
 
-        cart_item.price = product.price
+        cart_item.price = @product.price
         cart_item.save
         redirect_to cart_path, notice: 'Product added to cart'
       end
@@ -42,7 +42,11 @@ class ProductController < ApplicationController
   end
 
   private
-    def current_order
-      Order.find_or_create_by(customer: current_customer, status: 'cart')
+    def set_cart_items
+      @cart_items = current_order.carts
+    end
+
+    def set_product
+      @product = Product.find(params[:id])
     end
 end

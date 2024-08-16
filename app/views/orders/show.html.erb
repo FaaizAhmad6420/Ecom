@@ -1,0 +1,35 @@
+<%= render 'product/navigation' %>
+<div class="container">
+  <%= render 'layouts/messages' %>
+  <h1>Order Summary</h1>
+  <p>Order ID: <%= @order.id %></p>
+  <p>Order Date: <%= @order.created_at.strftime('%B %d, %Y') %></p>
+  <p>Total: $<%= @order.carts.sum { |item| item.quantity * item.price } %></p>
+
+  <h2>Items</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Size</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <% @order.carts.each do |cart_item| %>
+        <tr>
+          <td><%= cart_item.product.name %></td>
+          <td><%= cart_item.size.display_name %></td>
+          <td><%= cart_item.quantity %></td>
+          <td>$<%= cart_item.price %></td>
+          <td>$<%= cart_item.quantity * cart_item.price %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= link_to 'Back to Home', root_path, class: 'btn btn-secondary' %>
+</div>
