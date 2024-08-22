@@ -12,21 +12,24 @@
               <strong>Order #<%= order.id %></strong> - Placed on <%= order.created_at.strftime('%B %d, %Y') %> - $<%= order.carts.sum { |item| item.quantity * item.price } %>
             </button>
           </h2>
-          
+
           <div id="<%= order.id %>" class="accordion-collapse collapse">
             <div class="accordion-body">
               <ol>
                 <% order.carts.each do |cart_item| %>
                   <li>
-                    <%= image_tag(cart_item.product.image, size: "100x100") if cart_item.product.image.attached? %>  
-                    <%= cart_item.product.name %> - 
-                    <%= number_to_currency(cart_item.price) %> × 
+                    <%= image_tag(cart_item.product.image, size: "100x100") if cart_item.product.image.attached? %>
+                    <%= cart_item.product.name %> -
+                    <%= cart_item.size.display_name %> -
+                    <%= number_to_currency(cart_item.price) %> ×
                     <%= cart_item.quantity %>
                   </li>
 
                   <br>
                 <% end %>
               </ol>
+
+              <a href="<%= order_path(order) %>" class="btn btn-primary">Summary</a>
             </div>
           </div>
         </div>
